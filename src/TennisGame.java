@@ -27,7 +27,9 @@ public class TennisGame {
 		case 1: return "15" ;
 		case 2: return "30" ;
 		case 3: return "40";
-		default: return "40" ;
+		case 4: return "advantage";
+		//case 5: return "(this player has won)" ;
+		default: return "ERROR" ;
 		} 		
 	}
 	
@@ -69,6 +71,12 @@ public class TennisGame {
 		
 			String player1Score = getScore(player1Points);
 			String player2Score = getScore(player2Points);
+
+			if (player1Points == 4 && player1Points == player2Points) {
+				gameEnded = true;
+				return "deuce";
+			}
+			
 			
 			if (gameEnded) {
 				if (player1Points > player2Points)
@@ -77,13 +85,11 @@ public class TennisGame {
 					return "player2 wins";
 			}
 			
-			if (player1Points >= 4 && player1Points == player2Points)
-				return "deuce";
 			
-			if (player1Points >= 4 && player1Points - player2Points == 1)
+			if (player1Points == 4 && player1Points - player2Points == 1)
 				return "player1 has advantage";
 			
-			if (player2Points > 4 && player2Points - player1Points == 1)
+			if (player2Points == 4 && player2Points - player1Points == 1)
 				return "player2 has advantage";							
 			
 			return  player2Score + " - " + player1Score ;
